@@ -1,0 +1,30 @@
+<clickhouse>
+    <remote_servers>
+        <events_cluster>
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica><host>ch-s1-r1</host><port>9000</port></replica>
+                <replica><host>ch-s1-r2</host><port>9000</port></replica>
+                <replica><host>ch-s1-r3</host><port>9000</port></replica>
+            </shard>
+            <shard>
+                <internal_replication>true</internal_replication>
+                <replica><host>ch-s2-r1</host><port>9000</port></replica>
+                <replica><host>ch-s2-r2</host><port>9000</port></replica>
+                <replica><host>ch-s2-r3</host><port>9000</port></replica>
+            </shard>
+        </events_cluster>
+    </remote_servers>
+
+    <zookeeper>
+        <node><host>keeper1</host><port>9181</port></node>
+        <node><host>keeper2</host><port>9181</port></node>
+        <node><host>keeper3</host><port>9181</port></node>
+    </zookeeper>
+
+    <macros>
+        <cluster>events_cluster</cluster>
+        <shard from_env="SHARD"/>
+        <replica from_env="REPLICA"/>
+    </macros>
+</clickhouse>
